@@ -1,0 +1,46 @@
+# Зависимости
+node_modules/
+.pnp
+.pnp.js
+
+# Секретные данные (КРИТИЧНО для твоей базы и домена)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+
+# Remix
+.cache/
+build/
+public/build/
+
+# React Native (проект без Expo)
+android/build/
+android/.gradle/
+android/app/build/
+ios/Pods/
+ios/build/
+*.xcworkspace
+*.jks
+*.keystore
+
+# База данных (PostgreSQL логгирование или дампы)
+*.sql
+*.log
+.db_data/
+
+# Специфично для твоей Fedora (Linux) и Windows
+.DS_Store
+Thumbs.db
+.vscode/
+.zed/ # Для твоего редактора Zed
+.idea/
+*.swp
+
+# Логи и отчеты
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
