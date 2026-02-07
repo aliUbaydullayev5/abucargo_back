@@ -44,6 +44,7 @@ const initDb = async () => {
     console.log('База данных инициализирована.');
   } catch (err) {
     console.error('Ошибка при инициализации базы данных:', err);
+    throw err; // Re-throw the error so index.js can handle it
   }
 };
 
