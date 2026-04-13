@@ -19,6 +19,11 @@ app.post('/api/leads', async (req, res) => {
 
     console.log('Входящий запрос от Тильды:', JSON.stringify(req.body));
 
+    // Tilda sends {"test":"test"} to verify the webhook — just return 200
+    if (req.body.test) {
+        return res.status(200).json({ status: 'ok' });
+    }
+
     // Tilda sends fields with capital letters: Name, Email, Phone
     const name = req.body.name || req.body.Name || req.body.NAME;
     const email = req.body.email || req.body.Email || req.body.EMAIL;
@@ -26,7 +31,7 @@ app.post('/api/leads', async (req, res) => {
 
     if (!name || !email || !phone) {
         console.error('Не хватает полей. Получено:', JSON.stringify(req.body));
-        return res.status(400).json({ error: 'Все поля (name, email, phone) обязательны', received: req.body });
+        return res.status(400).json({ error: 'Все поля (name, email, phone) обязательны' });
     }
 
     try {
