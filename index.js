@@ -16,10 +16,17 @@ app.post('/api/leads', async (req, res) => {
     if (!req.body) {
         return res.status(400).json({ error: 'Тело запроса отсутствует' });
     }
-    const { name, email, phone } = req.body;
+
+    console.log('Входящий запрос от Тильды:', JSON.stringify(req.body));
+
+    // Tilda sends fields with capital letters: Name, Email, Phone
+    const name = req.body.name || req.body.Name || req.body.NAME;
+    const email = req.body.email || req.body.Email || req.body.EMAIL;
+    const phone = req.body.phone || req.body.Phone || req.body.PHONE;
 
     if (!name || !email || !phone) {
-        return res.status(400).json({ error: 'Все поля (name, email, phone) обязательны' });
+        console.error('Не хватает полей. Получено:', JSON.stringify(req.body));
+        return res.status(400).json({ error: 'Все поля (name, email, phone) обязательны', received: req.body });
     }
 
     try {
